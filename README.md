@@ -16,8 +16,8 @@ C++ service for project and task management that uses [userver framework](https:
 ## Features Implemented
 ### 1. Database Schema Design (`schema.sql`)
 - **Tables:** `users`, `projects`, `tasks`
-- **Primary Keys:** Auto-increment `SERIAL` for all tables
-- **Foreign Keys:** Proper relationships with cascading rules
+- **Primary Keys:** `id SERIAL PRIMARY KEY` for all tables
+- **Foreign Keys:** `CASCADE`/`SET NULL`/`RESTRICT`
 - **Constraints:** `NOT NULL`, `UNIQUE`, `CHECK` (status validation, priority range 1-5)
 - **Soft Delete:** `is_deleted` flag for users (history preservation)
 - **Cascade Rules:**
@@ -80,10 +80,10 @@ The C++ API (`postgres_storage.cpp`) now uses `userver::storages::postgres::Clus
 
 ## How to Run
 ```
-git clone -b task-03 --single-branch https://github.com/xuxusw/myservice.git
+git clone https://github.com/xuxusw/temp-task-03.git
 ```
 ```
-cd myservice
+cd temp-task-03
 ```
 ```
 docker compose up -d
@@ -202,7 +202,7 @@ Authorization: Bearer <token>
 
 ## Project Structure
 ```
-myservice/
+myservice ("temp-task-03" on this repository)/
 ├── postgresql/
 │   └── schemas/
 │       ├── schema.sql          # Database schema (tables, indexes, constraints)
