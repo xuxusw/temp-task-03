@@ -23,7 +23,7 @@ C++ service for project and task management that uses [userver framework](https:
 - **Cascade Rules:**
   - `tasks.project_id -> projects.id ON DELETE CASCADE` (tasks deleted when project is deleted)
   - `tasks.assignee_id -> users.id ON DELETE SET NULL` (tasks remain, assignee becomes NULL)
-  - `tasks.creator_id -> users.id ON DELETE RESTRICT` (tasks remain, creator remains in history. NOT NULL is not quite good cause it wont keep the info about who created the task. so RESTRICT)
+  - `tasks.creator_id -> users.id ON DELETE RESTRICT` (tasks remain, creator remains in history. SET NULL is not quite good cause it wont keep the info about who created the task. so RESTRICT)
 
 ### 2. Indexes for Query Optimization
 | Index | Table | Columns | Purpose |
@@ -80,10 +80,10 @@ The C++ API (`postgres_storage.cpp`) now uses `userver::storages::postgres::Clus
 
 ## How to Run
 ```
-git clone <this-repo>
+git clone -b task-03 --single-branch https://github.com/xuxusw/myservice.git
 ```
 ```
-cd <repo-name>
+cd myservice
 ```
 ```
 docker compose up -d
